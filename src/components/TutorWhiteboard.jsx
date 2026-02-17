@@ -36,7 +36,7 @@ const TutorWhiteboard = ({
   const [joinErrorMsg, setJoinErrorMsg] = useState(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:8085";
+  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
   useEffect(() => {
     const socket = io(SOCKET_URL, {

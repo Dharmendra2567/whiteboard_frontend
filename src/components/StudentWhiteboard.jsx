@@ -7,7 +7,7 @@ import RequestAccessIcon from "../assets/requeststudent.svg";
 import SessionTimer from "./SessionTimer";
 import "./whiteboard.css";
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:8085";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
 function StudentWhiteboard({
   roomId,
