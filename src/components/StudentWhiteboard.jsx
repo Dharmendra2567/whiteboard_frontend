@@ -1,5 +1,4 @@
 // import { captureCurrentPage } from "./saveCurrentPage";
-import logo from "../assets/logo.png";
 import { Excalidraw } from "@excalidraw/excalidraw";
 import "@excalidraw/excalidraw/index.css";
 import { io } from "socket.io-client";
@@ -175,7 +174,15 @@ function StudentWhiteboard({
   return (
     <>
       <header className="tw-header">
-        <img src={logo} alt="NNIIT Logo" className="tw-logo" />
+        <span style={{
+          fontSize: "20px",
+          fontWeight: "800",
+          color: "white",
+          fontFamily: "'Manrope', sans-serif",
+          marginRight: "20px"
+        }}>
+          Whiteboard
+        </span>
 
         <div className="tw-title">Student Board</div>
 
@@ -197,7 +204,7 @@ function StudentWhiteboard({
               style={{ width: "16px", height: "16px", borderRadius: "50%", background: tutorStatus === "Online" ? "#22c55e" : "#ef4444" }}
             />
           </div>
-          <SessionTimer endTime={endTime} />
+          <SessionTimer startTime={startTime} endTime={endTime} dateOfSession={dateOfSession} />
         </div>
 
         <div className="tw-actions">

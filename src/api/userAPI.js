@@ -23,16 +23,12 @@ export const generateStudentLink = async ({ tutorId, roomId }) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to generate student link");
+    const errorBody = await response.json().catch(() => ({}));
+    throw new Error(errorBody.message || "Something went wrong while generating student link");
   }
 
   return await response.json();
 };
-
-
-
-
-
 
 
 
@@ -48,12 +44,12 @@ export const generateRoomLink = async (payload) => {
     }
   );
 
+  const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({}));
-    throw new Error(errorBody.message || "Failed to generate room link");
+    throw new Error(data.message || "Failed to generate room link");
   }
 
-  return response.json();
+  return data;
 };
 
 
@@ -74,9 +70,10 @@ export const validateRoom = async (token) => {
     }
   );
 
+  const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error("Room validation failed");
+    throw new Error(data.message || "Room validation failed");
   }
 
-  return response.json();
+  return data;
 };

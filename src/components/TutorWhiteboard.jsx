@@ -1,4 +1,3 @@
-import logo from "../assets/logo.png";
 import eraserIcon from "../assets/eraser.svg";
 import deleteIcon from "../assets/request-access.svg";
 import accessRequestImg from "../assets/access-request.svg";
@@ -195,12 +194,20 @@ const TutorWhiteboard = ({
   return (
     <>
       <header className="tw-header">
-        <img src={logo} alt="NNIIT Logo" className="tw-logo" />
+        <span style={{
+          fontSize: "20px",
+          fontWeight: "800",
+          color: "white",
+          fontFamily: "'Manrope', sans-serif",
+          marginRight: "20px"
+        }}>
+          Whiteboard
+        </span>
 
         <div className="tw-title">Tutor Board</div>
 
         <div className="tw-status-timer-container" style={{ position: "absolute", left: "20%", transform: "translateX(-50%)", display: "flex", alignItems: "center" }}>
-          <SessionTimer endTime={endTime} />
+          <SessionTimer startTime={startTime} endTime={endTime} dateOfSession={dateOfSession} />
         </div>
 
         <div className="tw-actions">
