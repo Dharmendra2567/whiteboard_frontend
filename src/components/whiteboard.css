@@ -1,0 +1,652 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+/* Bottom-center toolbar for Excalidraw */
+.excalidraw {
+  position: relative;
+}
+
+/* Toolbar wrapper */
+.excalidraw .App-toolbar {
+  position: fixed !important;
+  bottom: 20px;
+  top: auto !important;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Optional: rounded + shadow */
+.excalidraw .App-toolbar__container {
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Prevent canvas from hiding behind toolbar */
+.excalidraw .canvas-container {
+  padding-bottom: 110px;
+}
+
+.wb-dropdown {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 9999;
+}
+
+.wb-trigger {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.wb-trigger:hover {
+  background: #4338ca;
+}
+
+.wb-menu {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  min-width: 160px;
+}
+
+.wb-menu button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #f3f4f6;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wb-menu button:hover {
+  background: #e5e7eb;
+}
+
+.wb-colors {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.wb-colors span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* eraser clear */
+.clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 41px;
+  padding: 13px 42px;
+  border-radius: 100px;
+  border: none;
+
+  background: linear-gradient(90deg, #27A4D1 0%, #004F6B 100%);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clear-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.clear-btn:active {
+  transform: scale(0.98);
+}
+
+.clear-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* remove access */
+.remove-access-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 41px;
+  padding: 13px 47px;
+  gap: 16px;
+
+  background: #ffffff;
+  border: 1px solid #EB0000;
+  border-radius: 100px;
+
+  color: #EB0000;
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.remove-access-btn:hover {
+  background: rgba(235, 0, 0, 0.05);
+}
+
+.remove-access-btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   Popup Overlay
+========================= */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  /* 50% background dim */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+/* =========================
+   Popup Card
+========================= */
+.popup-card {
+  background: rgba(255, 255, 255, 0.8);
+  /* frame bg reduced to 80% */
+  backdrop-filter: blur(8px);
+
+  border-radius: 24px;
+  padding: 32px 24px;
+  width: 360px;
+
+  text-align: center;
+}
+
+/* =========================
+   Popup Image
+========================= */
+.popup-card img {
+  width: 180px;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   Popup Title
+========================= */
+.popup-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+/* =========================
+   Button Row
+========================= */
+.popup-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* =========================
+   Approve Button
+========================= */
+.approve-btn {
+  height: 41px;
+  padding: 13px 32px;
+  border-radius: 100px;
+  border: none;
+
+  background: linear-gradient(90deg, #5ab9db 0%, #c900d0 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  /* ✅ CENTER TEXT FIX */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.approve-btn:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   Deny Button
+========================= */
+.deny-btn {
+  height: 41px;
+  padding: 13px 42px;
+  border-radius: 100px;
+
+  background: transparent;
+  border: 1px solid #BABABA;
+
+  color: #8a8a8a;
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+  /* ✅ CENTER TEXT FIX */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deny-btn:active {
+  transform: scale(0.97);
+}
+
+/* save button ui enhancement */
+.save-page-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 42px;
+  padding: 13px 31px;
+
+  border-radius: 100px;
+  border: none;
+
+  background: linear-gradient(90deg, #27A4D1 0%, #004F6B 100%);
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.save-page-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.save-page-btn:active {
+  transform: scale(0.98);
+}
+
+.save-page-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* =========================
+   Whiteboard Actions Layout
+========================= */
+.whiteboard-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 24px;
+}
+
+/* Left-side buttons */
+.whiteboard-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* =========================
+   Tutor Board Header
+========================= */
+.whiteboard-header {
+  padding: 16px 24px;
+}
+
+.whiteboard-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+
+  font-family: "Manrope", sans-serif;
+}
+
+.whiteboard-header {
+  padding: 8px 24px 6px;
+}
+
+/* ===================================================== */
+/* =============== TUTOR WHITEBOARD HEADER ============== */
+/* ===================================================== */
+
+.tw-header {
+  width: 100%;
+  height: 105px;
+
+  /* Figma gradient */
+  background: linear-gradient(90deg,
+      #ffffff 0%,
+      #5ab9db 100%);
+
+  /* Bottom rounded corners */
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+
+  position: relative;
+  z-index: 10;
+}
+
+/* Logo (left) */
+.tw-logo {
+  height: 36px;
+}
+
+/* Center title (true center like Figma) */
+.tw-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Right actions container */
+.tw-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===================================================== */
+/* ================== CLEAR BUTTON ===================== */
+/* ===================================================== */
+
+.tw-clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  /* Hug size via padding */
+  padding: 13px 42px;
+  height: 44.78px;
+
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+
+  /* Gradient/02/002 */
+  background: linear-gradient(90deg,
+      #5ab9db 0%,
+      #c900d0 100%);
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+
+  /* Drop shadow */
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tw-clear-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===================================================== */
+/* ========== REQUEST / REMOVE ACCESS BUTTON ============ */
+/* ===================================================== */
+
+.tw-icon-btn {
+  width: 45px;
+  height: 45px;
+
+  border-radius: 22.5px;
+  border: none;
+  cursor: pointer;
+
+  /* Gradient/01/001 */
+  background: linear-gradient(135deg,
+      #5ab9db 0%,
+      #c900d0 100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.2s ease;
+}
+
+.tw-icon-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Disabled state */
+.tw-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: auto;
+  /* Allow hover even when disabled for tooltip */
+}
+
+/* ===================================================== */
+/* ============= INSTANT CUSTOM TOOLTIP =============== */
+/* ===================================================== */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0s, transform 0s;
+  /* Instant transition */
+
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Tooltip Arrow */
+[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  border: 6px solid transparent;
+  border-top-color: #333;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0s;
+  pointer-events: none;
+}
+
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===================================================== */
+/* ================= RESPONSIVE DESIGN ================= */
+/* ===================================================== */
+
+@media (max-width: 1024px) {
+  .tw-header {
+    padding: 0 16px;
+    height: 90px;
+  }
+
+  .tw-title {
+    font-size: 18px;
+  }
+
+  .tw-clear-btn {
+    padding: 10px 24px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .share-btn {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tw-header {
+    height: auto;
+    min-height: 80px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .tw-logo {
+    height: 24px;
+    order: 1;
+  }
+
+  /* Move title and timer to a row below or hide title */
+  .tw-title {
+    position: static;
+    transform: none;
+    order: 3;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 8px;
+  }
+
+  .tw-actions {
+    order: 2;
+    gap: 6px;
+    margin-left: 0;
+  }
+
+  /* Timer and status flex container */
+  .tw-status-timer-container {
+    position: static !important;
+    transform: none !important;
+    order: 4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+    gap: 8px;
+  }
+
+  .tw-clear-btn {
+    padding: 6px 12px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .tw-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .popup-card {
+    width: 85%;
+    padding: 24px 16px;
+  }
+
+  .popup-card img {
+    width: 120px;
+  }
+
+  .popup-title {
+    font-size: 16px;
+  }
+
+  /* Adjust Excalidraw container height for larger header */
+  #excalidraw-container {
+    height: calc(100vh - 150px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tw-actions {
+    gap: 4px;
+  }
+
+  .share-btn {
+    display: none !important;
+  }
+
+  .tw-clear-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .tw-clear-btn img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .tw-title {
+    font-size: 13px;
+  }
+}
